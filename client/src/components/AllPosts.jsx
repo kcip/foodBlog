@@ -21,10 +21,8 @@ export default class AllPosts extends Component {
   render() {
 
     const posts = this.state.posts.map((post, index) => {
-      return <PostCard title={post.title} imgURL={post.imgURL} content={post.content} user={post.user} index={index} />
+      return <PostCard title={post.title} imgURL={post.imgURL} content={post.content} user={post.user} key={index} id={post._id} />
     })
-
-    console.log(posts)
 
     return (
 
