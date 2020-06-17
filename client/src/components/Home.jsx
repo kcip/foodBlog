@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from './shared/Layout'
 import AllPosts from './AllPosts'
-////home
+
 const Home = () => {
  return (
   <Layout>

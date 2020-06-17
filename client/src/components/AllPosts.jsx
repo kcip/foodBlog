@@ -17,6 +17,13 @@ export default class AllPosts extends Component {
   this.setState({ posts })
  }
 
+ async componentDidMount() {
+  const posts = await getPosts()
+  console.log(posts)
+  this.setState({ posts })
+ }
+
+
 
  render() {
 
@@ -32,4 +39,5 @@ export default class AllPosts extends Component {
 
   )
  }
+
 }
