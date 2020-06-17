@@ -14,7 +14,7 @@ const App = () => {
    <Switch>
     <Route exact path='/' component={Home} />
     <Route exact path="/:id" component={Postdetail} />
-
+    
     {/* <Route path="/add-post" component={PostCreate} />
     
     <Route path="/postcreate/:title" exact component={PostCreate} /> */}
