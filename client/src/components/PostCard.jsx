@@ -6,9 +6,10 @@ export default class PostCard extends Component {
     return (
       <Link to={'/' + this.props.id}>
         <div>
-          <img src={this.props.imgURL} width={"300px"}></img>
+        <h3>{this.props.title}</h3>
+         
           <div>
-            <h3>{this.props.title}</h3>
+          <img src={this.props.imgURL} width={"300px"}></img>
             <div>{this.props.user}</div>
           </div>
         </div>

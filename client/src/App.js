@@ -13,12 +13,11 @@ const App = () => {
     <div className="app">
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path="/add-post" component={PostCreate} />
-        <Route exact path="/:id" component={PostDetail} />
-        <Route exact path="/:id/edit" component={PostEdit} />
+        <Route path="/postcreate" component={PostCreate} /> 
+        <Route exact path="/:id" component={Postdetail} />
 
+        {/* {/* <Route path="/add-post" component={PostCreate} /> */}
 
-        {/* <Route path="/postcreate/:title" exact component={PostCreate} />  */}
       </Switch>
     </div>
   );
