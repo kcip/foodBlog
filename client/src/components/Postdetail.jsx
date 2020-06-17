@@ -3,7 +3,7 @@ import Layout from './shared/Layout'
 import { getPost, deletePost } from '../services/posts';
 import { Link } from 'react-router-dom'
 
-class PostDetail extends Component {
+class Postdetail extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -12,7 +12,7 @@ class PostDetail extends Component {
         user: '',
         imgURL: '',
         content: '',
-        id: ''
+        _id: ''
       }
     }
   }
@@ -48,7 +48,7 @@ class PostDetail extends Component {
 
             <div className="button-container">
               <button className="edit-button">
-                <Link className="edit-link" to={`${this.state.post.id}/edit`}>Edit</Link>
+                <Link className="edit-link" to={`${this.state.post._id}/edit`}>Edit</Link>
               </button>
               <button className="delete-button" onClick={() => deletePost(this.state.post.id)}>Delete</button>
             </div>
@@ -65,4 +65,4 @@ class PostDetail extends Component {
     )
   }
 }
-export default PostDetail
+export default Postdetail
