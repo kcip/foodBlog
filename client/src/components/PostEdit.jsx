@@ -1,31 +1,30 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
 import Layout from './shared/Layout'
 import { getPost, updatePost } from '../services/posts'
+import { Redirect } from 'react-router-dom'
 
 class PostEdit extends Component {
   constructor(props) {
-    super(props)
+    super()
     this.state = {
       post: {
         title: '',
+        user: '',
         imgURL: '',
         content: '',
-        user: '',
         _id: ''
       },
       updated: false
     }
-
   }
+
 
   async componentDidMount() {
     let { id } = this.props.match.params
     const post = await getPost(id)
-    console.log(post);
-    
     this.setState({ post })
   }
+
 
   handleChange = (event) => {
     const { name, value } = event.target
@@ -43,62 +42,54 @@ class PostEdit extends Component {
     const updated = await updatePost(id, this.state.post)
     this.setState({ updated })
   }
-
-
   render() {
 
     const { post, updated } = this.state
 
     if (updated) {
-      return <Redirect to={`/${this.props.match.params.id}`} />
+      return <Redirect to={`${this.props.match.params.id}`} />
     }
+
 
     return (
       <Layout>
-        {/* {this.state.post.title} */}
-        <div className="postEdit">
-          <div className="image-container">
-            <img className="edit-product-image" src={post.imgURL} alt={post.name} />
-            <form onSubmit={this.handleSubmit}>
-              <input
-                className="postEdit-input"
-                placeholder="post title"
-                value={post.imgURL}
-                name='imgURL'
-                required
-                onChange={this.handleChange}
-              />
-            </form>
-          </div>
-          <form className="edit-form" onSubmit={this.handleSubmit}>
+        <div className="product-edit">
+          <form className="postCreate" onSubmit={this.handleSubmit}>
             <input
+              type="text"
               className="input-name"
-              placeholder="post img"
+              placeholder='Title'
               value={post.title}
               name='title'
               required
               autoFocus
-              onChange={this.handleChange}
-            />
-            <input 
-              className="input-user"
-              placeholder='User'
-              value={post.user}
-              name='user'
+              onChange={this.handleChange} />
+            <input
+              type="text"
+              className="input-imgURL"
+              placeholder='Image URL'
+              value={post.imgURL}
+              name='imgURL'
               required
-              onChange={this.handleChange}
-            />
+              onChange={this.handleChange} />
             <textarea
-              className="textera-content"
-              rows={10}
-              cols={78}
+              type="text"
+              className="textarea-content"
+              rows={20}
               placeholder='Content'
               value={post.content}
               name='content'
               required
-              onChange={this.handleChange}
-            />
-            <button type="submit" className="postEdit--saveButton">save</button>
+              onChange={this.handleChange} />
+            <input
+              type="text"
+              className="input-user"
+              placeholder='Author Name'
+              value={post.user}
+              name='user'
+              required
+              onChange={this.handleChange} />
+            <button type='submit' className="submit-button">Submit</button>
           </form>
         </div>
       </Layout>

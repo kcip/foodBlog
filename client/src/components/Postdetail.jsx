@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Layout from './shared/Layout'
 import { getPost, deletePost } from '../services/posts';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 
 class Postdetail extends Component {
   constructor(props) {
@@ -20,7 +20,16 @@ class Postdetail extends Component {
   async componentDidMount() {
     let { id } = this.props.match.params
     const post = await getPost(id)
+    console.log(post)
     this.setState({ post })
+  }
+
+  deleteAndRedirect(id) {
+    deletePost(this.state.post._id)
+
+    alert("This post is deleted")
+
+    return < Redirect exact to="/" />
   }
 
   render() {
@@ -30,32 +39,36 @@ class Postdetail extends Component {
         <div>
           <div className="post-detail">
             <div>
-              <img src={this.state.post.imgURL} width={"600px"}></img>
+              <img src={post.imgURL} width={"600px"}></img>
             </div>
             <div className="title">
               <h2>
-                {this.state.post.title}
+                {post.title}
               </h2>
             </div>
 
             <div className="author">
-              {this.state.post.user}
+              {post.user}
             </div>
             <div className="content">
-              {this.state.post.content}
+              {post.content}
             </div>
+
             <br />
 
             <div className="button-container">
               <button className="edit-button">
-                <Link className="edit-link" to={`${this.state.post._id}/edit`}>Edit</Link>
+                <Link className="edit-link" exact='true' to={`${post._id}/edit`}>Edit</Link>
               </button>
-              <button className="delete-button" onClick={() => deletePost(this.state.post.id)}>Delete</button>
+              <button className="delete-button" onClick={() => {
+                this.deleteAndRedirect(this.state.post._id)
+
+              }}>Delete</button>
             </div>
 
             <br />
 
-            <Link exact to='/'>
+            <Link exact='true' to='/'>
               Back
             </Link>
 

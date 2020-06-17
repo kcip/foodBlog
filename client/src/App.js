@@ -1,6 +1,6 @@
 import React from 'react';
 import Home from './components/Home'
-import Postdetail from './components/Postdetail'
+import PostDetail from './components/Postdetail'
 import PostCreate from './components/PostCreate'
 import PostEdit from './components/PostEdit'
 import './App.css';
@@ -13,12 +13,12 @@ const App = () => {
     <div className="app">
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route exact path="/:id" component={Postdetail} />
+        <Route exact path="/add-post" component={PostCreate} />
+        <Route exact path="/:id" component={PostDetail} />
         <Route exact path="/:id/edit" component={PostEdit} />
 
-        {/* <Route path="/add-post" component={PostCreate} />
-    
-    <Route path="/postcreate/:title" exact component={PostCreate} /> */}
+
+        {/* <Route path="/postcreate/:title" exact component={PostCreate} />  */}
       </Switch>
     </div>
   );
