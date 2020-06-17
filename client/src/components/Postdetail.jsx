@@ -3,7 +3,7 @@ import Layout from './shared/Layout'
 import { getPost, deletePost } from '../services/posts';
 import { Link, Redirect } from 'react-router-dom'
 
-class PostDetail extends Component {
+class Postdetail extends Component {
   constructor(props) {
     super()
     this.state = {
@@ -78,4 +78,4 @@ class PostDetail extends Component {
     )
   }
 }
-export default PostDetail
+export default Postdetail
