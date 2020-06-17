@@ -10,7 +10,7 @@ const Header = () => {
       <div className="nav">
         <NavLink className="logo" to="/">Food Blog</NavLink>
         <div className="links">
-          <NavLink className="link" to="/add-post">Add post</NavLink>
+          <NavLink className="link" to="/postcreate">Create Post</NavLink>
         </div>
       </div>
     </header>
