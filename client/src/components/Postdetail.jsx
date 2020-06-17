@@ -25,7 +25,7 @@ class PostDetail extends Component {
   }
 
   deleteAndRedirect(id) {
-    deletePost(this.state.post._id)
+    deletePost(id)
 
     alert("This post is deleted")
 
