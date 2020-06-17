@@ -1,81 +1,68 @@
 import React, { Component } from 'react'
 import Layout from './shared/Layout'
 import { getPost, deletePost } from '../services/posts';
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Postdetail extends Component {
-  constructor(props) {
-    super()
-    this.state = {
-      post: {
-        title: '',
-        user: '',
-        imgURL: '',
-        content: '',
-        _id: ''
-      }
-    }
+ constructor(props) {
+  super()
+  this.state = {
+   post: {
+    title: '',
+    user: '',
+    imgURL: '',
+    content: '',
+    id: ''
+   }
   }
+ }
 
-  async componentDidMount() {
-    let { id } = this.props.match.params
-    const post = await getPost(id)
-    console.log(post)
-    this.setState({ post })
-  }
+ async componentDidMount() {
+  let { id } = this.props.match.params
+  const post = await getPost(id)
+  this.setState({ post })
+ }
 
-  deleteAndRedirect(id) {
-    deletePost(this.state.post._id)
+ render() {
+  const { post } = this.state
+  return (
+   <Layout>
+    <div>
+     <div className="post-detail">
+      <div>
+       <img src={this.state.post.imgURL} width={"600px"}></img>
+      </div>
+      <div className="title">
+       <h2>
+        {this.state.post.title}
+       </h2>
+      </div>
 
-    alert("This post is deleted")
+      <div className="author">
+       {this.state.post.user}
+      </div>
+      <div className="content">
+       {this.state.post.content}
+      </div>
+      <br />
 
-    return < Redirect exact to="/" />
-  }
+      <div className="button-container">
+       <button className="edit-button">
+        <Link className="edit-link" to={`${this.state.post.id}/edit`}>Edit</Link>
+       </button>
+       <button className="delete-button" onClick={() => deletePost(this.state.post.id)}>Delete</button>
+      </div>
 
-  render() {
-    const { post } = this.state
-    return (
-      <Layout>
-        <div>
-          <div className="post-detail">
-            <div>
-              <img src={post.imgURL} width={"600px"}></img>
-            </div>
-            <div className="title">
-              <h2>
-                {post.title}
-              </h2>
-            </div>
+      <br />
 
-            <div className="author">
-              {post.user}
-            </div>
-            <div className="content">
-              {post.content}
-            </div>
+      <Link exact to='/'>
+       <p className="backButton">back</p>
+      </Link>
 
-            <br />
-
-            <div className="button-container">
-              <button className="edit-button">
-                <Link className="edit-link" exact='true' to={`${post._id}/edit`}>Edit</Link>
-              </button>
-              <button className="delete-button" onClick={() => {
-                this.deleteAndRedirect(this.state.post._id)
-
-              }}>Delete</button>
-            </div>
-
-            <br />
-
-            <Link exact='true' to='/'>
-              Back
-            </Link>
-
-          </div>
-        </div>
-      </Layout>
-    )
-  }
+     </div>
+    </div>
+   </Layout>
+  )
+ }
 }
 export default Postdetail
