@@ -1,34 +1,37 @@
 import React, { Component } from 'react'
 import PostCard from './PostCard'
-//import Layout from './shared/Layout'
-import { getPosts } from '../services/posts'
+import { getPosts } from '../services/posts.js'
 
 export default class AllPosts extends Component {
- constructor() {
-  super()
+  constructor() {
+    super()
 
-  this.state = {
-   posts: []
+    this.state = {
+      posts: []
+    }
   }
- }
 
- async componentDidMount() {
-  const posts = await getPosts()
-  this.setState({ posts })
- }
+  async componentDidMount() {
+    const posts = await getPosts()
+    console.log(posts)
+    this.setState({ posts })
+  }
 
 
- render() {
-  const posts = this.state.posts.map((post, index) => {
-   return <PostCard title={post.title} imgURL={post.imgURL} content={post.content} user={post.user} index={index} />
-  })
+  render() {
 
-  return (
+    const posts = this.state.posts.map((post, index) => {
+      return <PostCard title={post.title} imgURL={post.imgURL} content={post.content} user={post.user} index={index} />
+    })
 
-   <div className="posts">
-    {posts}
-   </div>
+    console.log(posts)
 
-  )
- }
+    return (
+
+      <div className="posts">
+        {posts}
+      </div>
+
+    )
+  }
 }

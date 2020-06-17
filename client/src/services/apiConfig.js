@@ -3,19 +3,19 @@ import axios from 'axios'
 let apiUrl
 
 const apiUrls = {
- production: 'https://sei-products-api.herokuapp.com/api',
- development: 'http://localhost:3000/api'
+  production: 'https://food-blog-001.herokuapp.com/api/',
+  development: 'http://localhost:4000/api'
 }
 
 if (window.location.hostname === 'localhost') {
- apiUrl = apiUrls.development
+  apiUrl = apiUrls.development
 
 } else {
- apiUrl = apiUrls.production
+  apiUrl = apiUrls.production
 }
 
 const api = axios.create({
- baseUrl: apiUrl
+  baseURL: apiUrl
 })
 
 export default api
