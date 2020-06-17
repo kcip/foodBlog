@@ -48,9 +48,9 @@ class Postdetail extends Component {
 
       <div className="button-container">
        <button className="edit-button">
-        <Link className="edit-link" to={`${this.state.post.id}/edit`}>Edit</Link>
+        <Link className="edit-link" to={`${this.state.post._id}/edit`}>Edit</Link>
        </button>
-       <button className="delete-button" onClick={() => deletePost(this.state.post.id)}>Delete</button>
+       <button className="delete-button" onClick={() => deletePost(this.state.post._id)}>Delete</button>
       </div>
 
       <br />
